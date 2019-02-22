@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 
 # **list_roles**
-> RolePagination list_roles
+> RolePagination list_roles(opts)
 
 List the roles for a tenant
 
@@ -174,10 +174,14 @@ RBACApiClient.configure do |config|
 end
 
 api_instance = RBACApiClient::RoleApi.new
+opts = {
+  page_size: 10, # Integer | Parameter for selecting the amount of data in a page.
+  page: 1 # Integer | Parameter for selecting the page of data.
+}
 
 begin
   #List the roles for a tenant
-  result = api_instance.list_roles
+  result = api_instance.list_roles(opts)
   p result
 rescue RBACApiClient::ApiError => e
   puts "Exception when calling RoleApi->list_roles: #{e}"
@@ -185,7 +189,11 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_size** | **Integer**| Parameter for selecting the amount of data in a page. | [optional] [default to 10]
+ **page** | **Integer**| Parameter for selecting the page of data. | [optional] [default to 1]
 
 ### Return type
 

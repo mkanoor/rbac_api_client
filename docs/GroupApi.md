@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 
 # **list_groups**
-> GroupPagination list_groups
+> GroupPagination list_groups(opts)
 
 List the groups for a tenant
 
@@ -276,10 +276,14 @@ RBACApiClient.configure do |config|
 end
 
 api_instance = RBACApiClient::GroupApi.new
+opts = {
+  page_size: 10, # Integer | Parameter for selecting the amount of data in a page.
+  page: 1 # Integer | Parameter for selecting the page of data.
+}
 
 begin
   #List the groups for a tenant
-  result = api_instance.list_groups
+  result = api_instance.list_groups(opts)
   p result
 rescue RBACApiClient::ApiError => e
   puts "Exception when calling GroupApi->list_groups: #{e}"
@@ -287,7 +291,11 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_size** | **Integer**| Parameter for selecting the amount of data in a page. | [optional] [default to 10]
+ **page** | **Integer**| Parameter for selecting the page of data. | [optional] [default to 1]
 
 ### Return type
 

@@ -72,6 +72,8 @@ module RBACApiClient
 
     # List the principals for a tenant
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page. (default to 10)
+    # @option opts [Integer] :page Parameter for selecting the page of data. (default to 1)
     # @return [PrincipalPagination]
     def list_principals(opts = {})
       data, _status_code, _headers = list_principals_with_http_info(opts)
@@ -80,16 +82,32 @@ module RBACApiClient
 
     # List the principals for a tenant
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page.
+    # @option opts [Integer] :page Parameter for selecting the page of data.
     # @return [Array<(PrincipalPagination, Fixnum, Hash)>] PrincipalPagination data, response status code and response headers
     def list_principals_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PrincipalApi.list_principals ...'
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 1000
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling PrincipalApi.list_principals, must be smaller than or equal to 1000.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling PrincipalApi.list_principals, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling PrincipalApi.list_principals, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/principals/'
 
       # query parameters
       query_params = {}
+      query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
 
       # header parameters
       header_params = {}

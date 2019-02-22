@@ -291,6 +291,8 @@ module RBACApiClient
 
     # List the groups for a tenant
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page. (default to 10)
+    # @option opts [Integer] :page Parameter for selecting the page of data. (default to 1)
     # @return [GroupPagination]
     def list_groups(opts = {})
       data, _status_code, _headers = list_groups_with_http_info(opts)
@@ -299,16 +301,32 @@ module RBACApiClient
 
     # List the groups for a tenant
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page.
+    # @option opts [Integer] :page Parameter for selecting the page of data.
     # @return [Array<(GroupPagination, Fixnum, Hash)>] GroupPagination data, response status code and response headers
     def list_groups_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: GroupApi.list_groups ...'
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 1000
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling GroupApi.list_groups, must be smaller than or equal to 1000.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling GroupApi.list_groups, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling GroupApi.list_groups, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/groups/'
 
       # query parameters
       query_params = {}
+      query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
 
       # header parameters
       header_params = {}

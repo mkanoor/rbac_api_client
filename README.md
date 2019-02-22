@@ -62,12 +62,16 @@ RBACApiClient.configure do |config|
 end
 
 api_instance = RBACApiClient::AccessApi.new
-username = 'username_example' # String | Unique username of the principal to obtain access for
 application = 'application_example' # String | The application name to obtain access for the principal
+opts = {
+  username: 'username_example', # String | Unique username of the principal to obtain access for
+  page_size: 10, # Integer | Parameter for selecting the amount of data in a page.
+  page: 1 # Integer | Parameter for selecting the page of data.
+}
 
 begin
   #Get the permitted access for a principal in the tenant
-  result = api_instance.get_principal_access(username, application)
+  result = api_instance.get_principal_access(application, opts)
   p result
 rescue RBACApiClient::ApiError => e
   puts "Exception when calling AccessApi->get_principal_access: #{e}"
