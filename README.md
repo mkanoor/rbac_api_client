@@ -81,7 +81,7 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost/r/insights/platform/rbac/api/v1*
+All URIs are relative to *http://localhost/r/insights/platform/rbac/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -92,6 +92,7 @@ Class | Method | HTTP request | Description
 *RBACApiClient::GroupApi* | [**delete_principal_from_group**](docs/GroupApi.md#delete_principal_from_group) | **DELETE** /groups/{uuid}/principals/ | Remove a principal from a group in the tenant
 *RBACApiClient::GroupApi* | [**get_group**](docs/GroupApi.md#get_group) | **GET** /groups/{uuid}/ | Get a group in the tenant
 *RBACApiClient::GroupApi* | [**list_groups**](docs/GroupApi.md#list_groups) | **GET** /groups/ | List the groups for a tenant
+*RBACApiClient::GroupApi* | [**update_group**](docs/GroupApi.md#update_group) | **PUT** /groups/{uuid}/ | Udate a group in the tenant
 *RBACApiClient::PolicyApi* | [**create_policies**](docs/PolicyApi.md#create_policies) | **POST** /policies/ | Create a policy in a tenant
 *RBACApiClient::PolicyApi* | [**delete_policy**](docs/PolicyApi.md#delete_policy) | **DELETE** /policies/{uuid}/ | Delete a policy in the tenant
 *RBACApiClient::PolicyApi* | [**get_policy**](docs/PolicyApi.md#get_policy) | **GET** /policies/{uuid}/ | Get a policy in the tenant

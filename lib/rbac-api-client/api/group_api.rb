@@ -352,5 +352,64 @@ module RBACApiClient
       return data, status_code, headers
     end
 
+    # Udate a group in the tenant
+    # @param uuid ID of group to update
+    # @param group Group to update in tenant
+    # @param [Hash] opts the optional parameters
+    # @return [GroupOut]
+    def update_group(uuid, group, opts = {})
+      data, _status_code, _headers = update_group_with_http_info(uuid, group, opts)
+      data
+    end
+
+    # Udate a group in the tenant
+    # @param uuid ID of group to update
+    # @param group Group to update in tenant
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(GroupOut, Fixnum, Hash)>] GroupOut data, response status code and response headers
+    def update_group_with_http_info(uuid, group, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: GroupApi.update_group ...'
+      end
+      # verify the required parameter 'uuid' is set
+      if @api_client.config.client_side_validation && uuid.nil?
+        fail ArgumentError, "Missing the required parameter 'uuid' when calling GroupApi.update_group"
+      end
+      # verify the required parameter 'group' is set
+      if @api_client.config.client_side_validation && group.nil?
+        fail ArgumentError, "Missing the required parameter 'group' when calling GroupApi.update_group"
+      end
+      # resource path
+      local_var_path = '/groups/{uuid}/'.sub('{' + 'uuid' + '}', uuid.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json', '*/*'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(group)
+      auth_names = ['basic_auth']
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'GroupOut')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: GroupApi#update_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
   end
 end
