@@ -279,7 +279,8 @@ end
 api_instance = RBACApiClient::GroupApi.new
 opts = {
   page_size: 10, # Integer | Parameter for selecting the amount of data in a page.
-  page: 1 # Integer | Parameter for selecting the page of data.
+  page: 1, # Integer | Parameter for selecting the page of data.
+  username: 'username_example' # String | A username for a principal to filter for groups
 }
 
 begin
@@ -297,6 +298,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page_size** | **Integer**| Parameter for selecting the amount of data in a page. | [optional] [default to 10]
  **page** | **Integer**| Parameter for selecting the page of data. | [optional] [default to 1]
+ **username** | **String**| A username for a principal to filter for groups | [optional] 
 
 ### Return type
 

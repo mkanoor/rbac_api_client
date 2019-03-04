@@ -293,6 +293,7 @@ module RBACApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page. (default to 10)
     # @option opts [Integer] :page Parameter for selecting the page of data. (default to 1)
+    # @option opts [String] :username A username for a principal to filter for groups
     # @return [GroupPagination]
     def list_groups(opts = {})
       data, _status_code, _headers = list_groups_with_http_info(opts)
@@ -303,6 +304,7 @@ module RBACApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page.
     # @option opts [Integer] :page Parameter for selecting the page of data.
+    # @option opts [String] :username A username for a principal to filter for groups
     # @return [Array<(GroupPagination, Fixnum, Hash)>] GroupPagination data, response status code and response headers
     def list_groups_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -327,6 +329,7 @@ module RBACApiClient
       query_params = {}
       query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'username'] = opts[:'username'] if !opts[:'username'].nil?
 
       # header parameters
       header_params = {}
