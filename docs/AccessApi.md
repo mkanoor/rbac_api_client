@@ -27,8 +27,8 @@ api_instance = RBACApiClient::AccessApi.new
 application = 'application_example' # String | The application name to obtain access for the principal
 opts = {
   username: 'username_example', # String | Unique username of the principal to obtain access for
-  page_size: 10, # Integer | Parameter for selecting the amount of data in a page.
-  page: 1 # Integer | Parameter for selecting the page of data.
+  limit: 10, # Integer | Parameter for selecting the amount of data returned.
+  offset: 0 # Integer | Parameter for selecting the offset of data.
 }
 
 begin
@@ -46,8 +46,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **String**| The application name to obtain access for the principal | 
  **username** | **String**| Unique username of the principal to obtain access for | [optional] 
- **page_size** | **Integer**| Parameter for selecting the amount of data in a page. | [optional] [default to 10]
- **page** | **Integer**| Parameter for selecting the page of data. | [optional] [default to 1]
+ **limit** | **Integer**| Parameter for selecting the amount of data returned. | [optional] [default to 10]
+ **offset** | **Integer**| Parameter for selecting the offset of data. | [optional] [default to 0]
 
 ### Return type
 

@@ -23,8 +23,8 @@ module RBACApiClient
     # @param application The application name to obtain access for the principal
     # @param [Hash] opts the optional parameters
     # @option opts [String] :username Unique username of the principal to obtain access for
-    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page. (default to 10)
-    # @option opts [Integer] :page Parameter for selecting the page of data. (default to 1)
+    # @option opts [Integer] :limit Parameter for selecting the amount of data returned. (default to 10)
+    # @option opts [Integer] :offset Parameter for selecting the offset of data. (default to 0)
     # @return [AccessPagination]
     def get_principal_access(application, opts = {})
       data, _status_code, _headers = get_principal_access_with_http_info(application, opts)
@@ -35,8 +35,8 @@ module RBACApiClient
     # @param application The application name to obtain access for the principal
     # @param [Hash] opts the optional parameters
     # @option opts [String] :username Unique username of the principal to obtain access for
-    # @option opts [Integer] :page_size Parameter for selecting the amount of data in a page.
-    # @option opts [Integer] :page Parameter for selecting the page of data.
+    # @option opts [Integer] :limit Parameter for selecting the amount of data returned.
+    # @option opts [Integer] :offset Parameter for selecting the offset of data.
     # @return [Array<(AccessPagination, Fixnum, Hash)>] AccessPagination data, response status code and response headers
     def get_principal_access_with_http_info(application, opts = {})
       if @api_client.config.debugging
@@ -46,16 +46,16 @@ module RBACApiClient
       if @api_client.config.client_side_validation && application.nil?
         fail ArgumentError, "Missing the required parameter 'application' when calling AccessApi.get_principal_access"
       end
-      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 1000
-        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling AccessApi.get_principal_access, must be smaller than or equal to 1000.'
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 1000
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling AccessApi.get_principal_access, must be smaller than or equal to 1000.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling AccessApi.get_principal_access, must be greater than or equal to 1.'
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling AccessApi.get_principal_access, must be greater than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling AccessApi.get_principal_access, must be greater than or equal to 1.'
+      if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
+        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling AccessApi.get_principal_access, must be greater than or equal to 0.'
       end
 
       # resource path
@@ -65,8 +65,8 @@ module RBACApiClient
       query_params = {}
       query_params[:'application'] = application
       query_params[:'username'] = opts[:'username'] if !opts[:'username'].nil?
-      query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
-      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
 
       # header parameters
       header_params = {}
