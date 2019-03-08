@@ -34,7 +34,7 @@ module RBACApiClient
       {
         :'meta' => :'PaginationMeta',
         :'links' => :'PaginationLinks',
-        :'data' => :'Array<PolicyOut>'
+        :'data' => :'Array<PolicyExtended>'
       }
     end
 
