@@ -238,24 +238,30 @@ module RBACApiClient
 
     # Update a policy in the tenant
     # @param uuid ID of policy to update
+    # @param policy_in Policy to update
     # @param [Hash] opts the optional parameters
     # @return [PolicyExtended]
-    def update_policy(uuid, opts = {})
-      data, _status_code, _headers = update_policy_with_http_info(uuid, opts)
+    def update_policy(uuid, policy_in, opts = {})
+      data, _status_code, _headers = update_policy_with_http_info(uuid, policy_in, opts)
       data
     end
 
     # Update a policy in the tenant
     # @param uuid ID of policy to update
+    # @param policy_in Policy to update
     # @param [Hash] opts the optional parameters
     # @return [Array<(PolicyExtended, Fixnum, Hash)>] PolicyExtended data, response status code and response headers
-    def update_policy_with_http_info(uuid, opts = {})
+    def update_policy_with_http_info(uuid, policy_in, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PolicyApi.update_policy ...'
       end
       # verify the required parameter 'uuid' is set
       if @api_client.config.client_side_validation && uuid.nil?
         fail ArgumentError, "Missing the required parameter 'uuid' when calling PolicyApi.update_policy"
+      end
+      # verify the required parameter 'policy_in' is set
+      if @api_client.config.client_side_validation && policy_in.nil?
+        fail ArgumentError, "Missing the required parameter 'policy_in' when calling PolicyApi.update_policy"
       end
       # resource path
       local_var_path = '/policies/{uuid}/'.sub('{' + 'uuid' + '}', uuid.to_s)
@@ -267,12 +273,14 @@ module RBACApiClient
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      post_body = @api_client.object_to_http_body(policy_in)
       auth_names = ['basic_auth']
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,

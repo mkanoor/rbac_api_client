@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 
 # **update_policy**
-> PolicyExtended update_policy(uuid)
+> PolicyExtended update_policy(uuid, policy_in)
 
 Update a policy in the tenant
 
@@ -228,10 +228,11 @@ end
 
 api_instance = RBACApiClient::PolicyApi.new
 uuid = 'uuid_example' # String | ID of policy to update
+policy_in = RBACApiClient::PolicyIn.new # PolicyIn | Policy to update
 
 begin
   #Update a policy in the tenant
-  result = api_instance.update_policy(uuid)
+  result = api_instance.update_policy(uuid, policy_in)
   p result
 rescue RBACApiClient::ApiError => e
   puts "Exception when calling PolicyApi->update_policy: #{e}"
@@ -243,6 +244,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**String**](.md)| ID of policy to update | 
+ **policy_in** | [**PolicyIn**](PolicyIn.md)| Policy to update | 
 
 ### Return type
 
@@ -254,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

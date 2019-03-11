@@ -105,7 +105,7 @@ module RBACApiClient
     def valid?
       return false if @key.nil?
       return false if @operation.nil?
-      operation_validator = EnumAttributeValidator.new('String', ['equal'])
+      operation_validator = EnumAttributeValidator.new('String', ['equal', 'in'])
       return false unless operation_validator.valid?(@operation)
       return false if @value.nil?
       true
@@ -114,7 +114,7 @@ module RBACApiClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] operation Object to be assigned
     def operation=(operation)
-      validator = EnumAttributeValidator.new('String', ['equal'])
+      validator = EnumAttributeValidator.new('String', ['equal', 'in'])
       unless validator.valid?(operation)
         fail ArgumentError, 'invalid value for "operation", must be one of #{validator.allowable_values}.'
       end
