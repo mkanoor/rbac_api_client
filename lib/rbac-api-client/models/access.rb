@@ -16,13 +16,13 @@ module RBACApiClient
   class Access
     attr_accessor :permission
 
-    attr_accessor :resource_definition
+    attr_accessor :resource_definitions
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'permission' => :'permission',
-        :'resource_definition' => :'resourceDefinition'
+        :'resource_definitions' => :'resourceDefinitions'
       }
     end
 
@@ -30,7 +30,7 @@ module RBACApiClient
     def self.openapi_types
       {
         :'permission' => :'String',
-        :'resource_definition' => :'Array<ResourceDefinition>'
+        :'resource_definitions' => :'Array<ResourceDefinition>'
       }
     end
 
@@ -46,9 +46,9 @@ module RBACApiClient
         self.permission = attributes[:'permission']
       end
 
-      if attributes.has_key?(:'resourceDefinition')
-        if (value = attributes[:'resourceDefinition']).is_a?(Array)
-          self.resource_definition = value
+      if attributes.has_key?(:'resourceDefinitions')
+        if (value = attributes[:'resourceDefinitions']).is_a?(Array)
+          self.resource_definitions = value
         end
       end
     end
@@ -61,8 +61,8 @@ module RBACApiClient
         invalid_properties.push('invalid value for "permission", permission cannot be nil.')
       end
 
-      if @resource_definition.nil?
-        invalid_properties.push('invalid value for "resource_definition", resource_definition cannot be nil.')
+      if @resource_definitions.nil?
+        invalid_properties.push('invalid value for "resource_definitions", resource_definitions cannot be nil.')
       end
 
       invalid_properties
@@ -72,7 +72,7 @@ module RBACApiClient
     # @return true if the model is valid
     def valid?
       return false if @permission.nil?
-      return false if @resource_definition.nil?
+      return false if @resource_definitions.nil?
       true
     end
 
@@ -82,7 +82,7 @@ module RBACApiClient
       return true if self.equal?(o)
       self.class == o.class &&
           permission == o.permission &&
-          resource_definition == o.resource_definition
+          resource_definitions == o.resource_definitions
     end
 
     # @see the `==` method
@@ -94,7 +94,7 @@ module RBACApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [permission, resource_definition].hash
+      [permission, resource_definitions].hash
     end
 
     # Builds the object from hash

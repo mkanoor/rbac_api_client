@@ -4,6 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **permission** | **String** |  | 
-**resource_definition** | [**Array&lt;ResourceDefinition&gt;**](ResourceDefinition.md) |  | 
+**resource_definitions** | [**Array&lt;ResourceDefinition&gt;**](ResourceDefinition.md) |  | 
 
 
