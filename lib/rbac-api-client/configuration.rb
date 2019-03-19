@@ -130,7 +130,7 @@ module RBACApiClient
     def initialize
       @scheme = 'http'
       @host = 'localhost'
-      @base_path = '/r/insights/platform/rbac/v1'
+      @base_path = '/api/rbac/v1'
       @api_key = {}
       @api_key_prefix = {}
       @timeout = 0
@@ -210,7 +210,7 @@ module RBACApiClient
     def server_settings
       [
         {
-          url: "/r/insights/platform/rbac/v1",
+          url: "/api/rbac/v1",
           description: "No descriptoin provided",
         }
       ]

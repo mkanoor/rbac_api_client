@@ -1,6 +1,6 @@
 # RBACApiClient::PolicyApi
 
-All URIs are relative to *http://localhost/r/insights/platform/rbac/v1*
+All URIs are relative to *http://localhost/api/rbac/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -176,7 +176,9 @@ end
 api_instance = RBACApiClient::PolicyApi.new
 opts = {
   limit: 10, # Integer | Parameter for selecting the amount of data returned.
-  offset: 0 # Integer | Parameter for selecting the offset of data.
+  offset: 0, # Integer | Parameter for selecting the offset of data.
+  name: 'name_example', # String | Parameter for filtering resource by name using string contains search.
+  order_by: 'order_by_example' # String | Parameter for ordering resource by value.
 }
 
 begin
@@ -194,6 +196,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| Parameter for selecting the amount of data returned. | [optional] [default to 10]
  **offset** | **Integer**| Parameter for selecting the offset of data. | [optional] [default to 0]
+ **name** | **String**| Parameter for filtering resource by name using string contains search. | [optional] 
+ **order_by** | **String**| Parameter for ordering resource by value. | [optional] 
 
 ### Return type
 

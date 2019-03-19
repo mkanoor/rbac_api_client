@@ -20,6 +20,10 @@ module RBACApiClient
 
     attr_accessor :uuid
 
+    attr_accessor :created
+
+    attr_accessor :modified
+
     attr_accessor :access
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -28,6 +32,8 @@ module RBACApiClient
         :'name' => :'name',
         :'description' => :'description',
         :'uuid' => :'uuid',
+        :'created' => :'created',
+        :'modified' => :'modified',
         :'access' => :'access'
       }
     end
@@ -38,6 +44,8 @@ module RBACApiClient
         :'name' => :'String',
         :'description' => :'String',
         :'uuid' => :'String',
+        :'created' => :'DateTime',
+        :'modified' => :'DateTime',
         :'access' => :'Array<Access>'
       }
     end
@@ -62,6 +70,14 @@ module RBACApiClient
         self.uuid = attributes[:'uuid']
       end
 
+      if attributes.has_key?(:'created')
+        self.created = attributes[:'created']
+      end
+
+      if attributes.has_key?(:'modified')
+        self.modified = attributes[:'modified']
+      end
+
       if attributes.has_key?(:'access')
         if (value = attributes[:'access']).is_a?(Array)
           self.access = value
@@ -81,6 +97,14 @@ module RBACApiClient
         invalid_properties.push('invalid value for "uuid", uuid cannot be nil.')
       end
 
+      if @created.nil?
+        invalid_properties.push('invalid value for "created", created cannot be nil.')
+      end
+
+      if @modified.nil?
+        invalid_properties.push('invalid value for "modified", modified cannot be nil.')
+      end
+
       if @access.nil?
         invalid_properties.push('invalid value for "access", access cannot be nil.')
       end
@@ -93,6 +117,8 @@ module RBACApiClient
     def valid?
       return false if @name.nil?
       return false if @uuid.nil?
+      return false if @created.nil?
+      return false if @modified.nil?
       return false if @access.nil?
       true
     end
@@ -105,6 +131,8 @@ module RBACApiClient
           name == o.name &&
           description == o.description &&
           uuid == o.uuid &&
+          created == o.created &&
+          modified == o.modified &&
           access == o.access
     end
 
@@ -117,7 +145,7 @@ module RBACApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, description, uuid, access].hash
+      [name, description, uuid, created, modified, access].hash
     end
 
     # Builds the object from hash

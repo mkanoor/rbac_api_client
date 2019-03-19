@@ -13,40 +13,24 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module RBACApiClient
-  class GroupWithPrincipals
-    attr_accessor :name
-
-    attr_accessor :description
-
-    attr_accessor :uuid
-
+  class Timestamped
     attr_accessor :created
 
     attr_accessor :modified
 
-    attr_accessor :principals
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'description' => :'description',
-        :'uuid' => :'uuid',
         :'created' => :'created',
-        :'modified' => :'modified',
-        :'principals' => :'principals'
+        :'modified' => :'modified'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'description' => :'String',
-        :'uuid' => :'String',
         :'created' => :'DateTime',
-        :'modified' => :'DateTime',
-        :'principals' => :'Array<PrincipalOut>'
+        :'modified' => :'DateTime'
       }
     end
 
@@ -58,18 +42,6 @@ module RBACApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.has_key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.has_key?(:'uuid')
-        self.uuid = attributes[:'uuid']
-      end
-
       if attributes.has_key?(:'created')
         self.created = attributes[:'created']
       end
@@ -77,26 +49,12 @@ module RBACApiClient
       if attributes.has_key?(:'modified')
         self.modified = attributes[:'modified']
       end
-
-      if attributes.has_key?(:'principals')
-        if (value = attributes[:'principals']).is_a?(Array)
-          self.principals = value
-        end
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @uuid.nil?
-        invalid_properties.push('invalid value for "uuid", uuid cannot be nil.')
-      end
-
       if @created.nil?
         invalid_properties.push('invalid value for "created", created cannot be nil.')
       end
@@ -105,21 +63,14 @@ module RBACApiClient
         invalid_properties.push('invalid value for "modified", modified cannot be nil.')
       end
 
-      if @principals.nil?
-        invalid_properties.push('invalid value for "principals", principals cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @name.nil?
-      return false if @uuid.nil?
       return false if @created.nil?
       return false if @modified.nil?
-      return false if @principals.nil?
       true
     end
 
@@ -128,12 +79,8 @@ module RBACApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          description == o.description &&
-          uuid == o.uuid &&
           created == o.created &&
-          modified == o.modified &&
-          principals == o.principals
+          modified == o.modified
     end
 
     # @see the `==` method
@@ -145,7 +92,7 @@ module RBACApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, description, uuid, created, modified, principals].hash
+      [created, modified].hash
     end
 
     # Builds the object from hash

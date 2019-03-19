@@ -177,6 +177,8 @@ module RBACApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit Parameter for selecting the amount of data returned. (default to 10)
     # @option opts [Integer] :offset Parameter for selecting the offset of data. (default to 0)
+    # @option opts [String] :name Parameter for filtering resource by name using string contains search.
+    # @option opts [String] :order_by Parameter for ordering resource by value.
     # @return [PolicyPagination]
     def list_policies(opts = {})
       data, _status_code, _headers = list_policies_with_http_info(opts)
@@ -187,6 +189,8 @@ module RBACApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit Parameter for selecting the amount of data returned.
     # @option opts [Integer] :offset Parameter for selecting the offset of data.
+    # @option opts [String] :name Parameter for filtering resource by name using string contains search.
+    # @option opts [String] :order_by Parameter for ordering resource by value.
     # @return [Array<(PolicyPagination, Fixnum, Hash)>] PolicyPagination data, response status code and response headers
     def list_policies_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -211,6 +215,8 @@ module RBACApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'name'] = opts[:'name'] if !opts[:'name'].nil?
+      query_params[:'order_by'] = opts[:'order_by'] if !opts[:'order_by'].nil?
 
       # header parameters
       header_params = {}

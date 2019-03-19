@@ -20,6 +20,10 @@ module RBACApiClient
 
     attr_accessor :uuid
 
+    attr_accessor :created
+
+    attr_accessor :modified
+
     attr_accessor :group
 
     attr_accessor :roles
@@ -30,6 +34,8 @@ module RBACApiClient
         :'name' => :'name',
         :'description' => :'description',
         :'uuid' => :'uuid',
+        :'created' => :'created',
+        :'modified' => :'modified',
         :'group' => :'group',
         :'roles' => :'roles'
       }
@@ -41,6 +47,8 @@ module RBACApiClient
         :'name' => :'String',
         :'description' => :'String',
         :'uuid' => :'String',
+        :'created' => :'DateTime',
+        :'modified' => :'DateTime',
         :'group' => :'GroupOut',
         :'roles' => :'Array<RoleOut>'
       }
@@ -66,6 +74,14 @@ module RBACApiClient
         self.uuid = attributes[:'uuid']
       end
 
+      if attributes.has_key?(:'created')
+        self.created = attributes[:'created']
+      end
+
+      if attributes.has_key?(:'modified')
+        self.modified = attributes[:'modified']
+      end
+
       if attributes.has_key?(:'group')
         self.group = attributes[:'group']
       end
@@ -89,6 +105,14 @@ module RBACApiClient
         invalid_properties.push('invalid value for "uuid", uuid cannot be nil.')
       end
 
+      if @created.nil?
+        invalid_properties.push('invalid value for "created", created cannot be nil.')
+      end
+
+      if @modified.nil?
+        invalid_properties.push('invalid value for "modified", modified cannot be nil.')
+      end
+
       if @group.nil?
         invalid_properties.push('invalid value for "group", group cannot be nil.')
       end
@@ -105,6 +129,8 @@ module RBACApiClient
     def valid?
       return false if @name.nil?
       return false if @uuid.nil?
+      return false if @created.nil?
+      return false if @modified.nil?
       return false if @group.nil?
       return false if @roles.nil?
       true
@@ -118,6 +144,8 @@ module RBACApiClient
           name == o.name &&
           description == o.description &&
           uuid == o.uuid &&
+          created == o.created &&
+          modified == o.modified &&
           group == o.group &&
           roles == o.roles
     end
@@ -131,7 +159,7 @@ module RBACApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, description, uuid, group, roles].hash
+      [name, description, uuid, created, modified, group, roles].hash
     end
 
     # Builds the object from hash

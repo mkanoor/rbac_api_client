@@ -81,7 +81,7 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost/r/insights/platform/rbac/v1*
+All URIs are relative to *http://localhost/api/rbac/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -124,7 +124,6 @@ Class | Method | HTTP request | Description
  - [RBACApiClient::Policy](docs/Policy.md)
  - [RBACApiClient::PolicyExtended](docs/PolicyExtended.md)
  - [RBACApiClient::PolicyIn](docs/PolicyIn.md)
- - [RBACApiClient::PolicyOut](docs/PolicyOut.md)
  - [RBACApiClient::PolicyPagination](docs/PolicyPagination.md)
  - [RBACApiClient::Principal](docs/Principal.md)
  - [RBACApiClient::PrincipalIn](docs/PrincipalIn.md)
@@ -138,6 +137,7 @@ Class | Method | HTTP request | Description
  - [RBACApiClient::RolePagination](docs/RolePagination.md)
  - [RBACApiClient::RoleWithAccess](docs/RoleWithAccess.md)
  - [RBACApiClient::Status](docs/Status.md)
+ - [RBACApiClient::Timestamped](docs/Timestamped.md)
  - [RBACApiClient::UUID](docs/UUID.md)
 
 
